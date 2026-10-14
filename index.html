@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legislatura de Santa Fe, 1983–2023</title>
+<style>
+:root{
+  --ink:#1b2430; --muted:#586272; --rule:#dde2e9; --bg:#f6f7f9; --card:#ffffff;
+  --peronismo:#1b2430; --asd:#2f7fcf; --indep:#7a98a6; --libert:#7b4fd0;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--rule)}
+header .wrap{padding-top:28px;padding-bottom:22px}
+h1{font:600 34px/1.15 var(--serif);margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);max-width:760px;margin:0}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;margin-top:20px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:#fff}
+.seg button{font:500 14px var(--sans);border:0;background:#fff;color:var(--ink);padding:8px 16px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+button:focus-visible{outline:3px solid #2f7fcf;outline-offset:2px}
+nav a{color:var(--muted);text-decoration:none;margin-right:16px;font-size:14px}
+nav a:hover{color:var(--ink);text-decoration:underline}
+section{padding:36px 0 8px}
+h2{font:600 24px/1.2 var(--serif);margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 18px;max-width:780px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px}
+.findings{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:f}
+.findings li{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:8px;padding:11px 14px;max-width:900px}
+.periods{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.periods button{font:500 13px var(--sans);border:1px solid var(--rule);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink)}
+.periods button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hemi-main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:center}
+@media(max-width:820px){.hemi-main{grid-template-columns:1fr}}
+.hemi-meta{font-size:14px}
+.hemi-meta .big{font:600 20px var(--serif)}
+.leg{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:3px}
+.leg li{display:flex;align-items:center;gap:8px;padding:3px 6px;border-radius:6px;cursor:default;font-size:14px}
+.leg li:hover{background:#eef1f5}
+.sw{width:13px;height:13px;border-radius:50%;flex:none}
+.leg .n{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600}
+.leg .famh{font-size:12px;color:var(--muted);margin:8px 0 0;cursor:default}
+.hemi .seat{transition:opacity .12s}
+.hemi.hl .seat{opacity:.15}
+.hemi.hl .seat.on{opacity:1}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:22px}
+.mini{border:1px solid var(--rule);border-radius:8px;background:#fff;padding:6px 6px 8px;cursor:pointer;text-align:center;font:inherit;color:inherit}
+.mini[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.mini .y{font-weight:600;font-size:14px}
+.mini .g{font-size:12px;color:var(--muted)}
+svg text{font-family:var(--sans)}
+.scroll{overflow-x:auto}
+.ribbon{opacity:.26;transition:opacity .12s}
+.ribbon:hover{opacity:.5}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px}
+.chart-grid h3{font:600 16px var(--sans);margin:0 0 2px}
+.chart-grid p{font-size:13px;color:var(--muted);margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:1040px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font-weight:600;background:#fafbfc;position:sticky;top:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+.alert{background:#fff7e6;border:1px solid #f0cf8a;border-radius:8px;padding:10px 14px;margin:0 0 10px}
+.alert b{color:#8a5a00}
+.notes li{margin-bottom:6px}
+.notes{max-width:860px;padding-left:20px}
+footer{padding:28px 0 48px;color:var(--muted);font-size:13px}
+.hitos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.hito{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px 14px;font-size:13.5px}
+.hito .d{color:var(--muted);font-size:12.5px}
+.hito h3{font:600 15px var(--sans);margin:2px 0 6px}
+.reg-leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 12px;font-size:13px;color:var(--muted)}
+.reg-leg span{display:inline-flex;align-items:center;gap:6px}
+.reg-leg i{width:18px;height:12px;border-radius:2px;border:1px solid #d3d8df;display:inline-block}
+.srcs{font-size:13px;color:var(--muted);max-width:860px;padding-left:20px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 14px;font-size:14px;color:var(--muted)}
+.dpos{color:#1b7a4b;font-weight:600}.dneg{color:#b3261e;font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+.two h4{font:600 15px var(--sans);margin:0 0 2px}.two p{font-size:13px;color:var(--muted);margin:0 0 6px}
+#tip{position:fixed;z-index:20;pointer-events:none;background:#1b2430;color:#fff;font-size:12.5px;line-height:1.4;padding:7px 10px;border-radius:6px;max-width:260px;opacity:0;transition:opacity .08s}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Legislatura de Santa Fe, 1983–2023</h1>
+    <p class="sub">Composición de la Cámara de Diputados y del Senado por período, con tres lecturas: cómo se reparten las bancas, cómo se mueven entre períodos y qué relación tienen con el gobernador y con el gobierno nacional.</p>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Cámara">
+        <button id="b-dip" aria-pressed="true">Diputados</button>
+        <button id="b-sen" aria-pressed="false">Senadores</button>
+      </div>
+      <nav aria-label="Secciones">
+        <a href="#hitos">Hitos</a><a href="#hemiciclo">Hemiciclo</a><a href="#flujo">Evolución</a><a href="#indicadores">Indicadores</a><a href="#votos">Votos</a><a href="#dhondt">D’Hondt</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="hitos">
+    <h2>Hitos del sistema electoral</h2>
+    <p class="lede">Los puntos son las elecciones, coloreados por la primera fuerza de la cámara elegida. Las franjas de fondo son el régimen electoral vigente en cada elección y se repiten en los gráficos de evolución e indicadores.</p>
+    <div class="card scroll"><div id="timeline" style="min-width:860px"></div></div>
+    <div class="hitos" id="hito-cards"></div>
+  </section>
+
+  <section id="hemiciclo">
+    <h2>Hemiciclo por período</h2>
+    <p class="lede">Cada punto es una banca. Los bloques se agrupan por familia partidaria, en el orden de tu hoja de relaciones. Pasá el cursor por la leyenda para resaltar un partido.</p>
+    <div class="card">
+      <div class="periods" id="periods" role="group" aria-label="Período"></div>
+      <div class="hemi-main">
+        <div id="hemi-big"></div>
+        <div class="hemi-meta" id="hemi-meta"></div>
+      </div>
+      <div class="mini-grid" id="minis"></div>
+    </div>
+  </section>
+
+  <section id="flujo">
+    <h2>Evolución de las bancas</h2>
+    <p class="lede">Las columnas son los períodos y los segmentos son partidos. Las cintas unen a cada familia partidaria con su peso en el período siguiente. La ficha sobre cada columna indica el partido del gobernador.</p>
+    <div class="card scroll"><div id="alluvial" style="min-width:860px"></div><div id="alluvial-leg"></div></div>
+  </section>
+
+  <section id="indicadores">
+    <h2>Indicadores</h2>
+    <p class="lede">Calculados sobre las bancas de cada período. El número efectivo de partidos (NEP) es 1 / Σp², con p = proporción de bancas de cada partido.</p>
+    <div class="reg-leg" id="reg-leg"></div>
+    <div class="chart-grid">
+      <div class="card"><h3>Número efectivo de partidos</h3><p id="p-nep"></p><div id="c-nep"></div></div>
+      <div class="card"><h3>Bancas del bloque del gobernador</h3><p id="p-gov"></p><div id="c-gov"></div></div>
+      <div class="card"><h3>Volatilidad de bancas entre períodos</h3><p id="p-vol"></p><div id="c-vol"></div></div>
+    </div>
+    <div class="card scroll" style="margin-top:16px">
+      <h3 style="font:600 16px var(--sans);margin:0 0 4px">Por régimen electoral</h3>
+      <p style="font-size:13px;color:#586272;margin:0 0 10px;max-width:760px">Cada régimen cubre entre 1 y 4 períodos y coincide con otros cambios políticos: sirve para describir, no para atribuir causas.</p>
+      <table id="tbl-reg" style="min-width:680px"></table>
+    </div>
+    <div class="card scroll" style="margin-top:16px">
+      <table id="tbl"></table>
+    </div>
+  </section>
+
+  <section id="votos">
+    <h2>Resultados de las elecciones a diputados</h2>
+    <p class="lede">Votos por lista en las once elecciones, sobre los votos positivos. Esta sección y la siguiente son siempre de Diputados, sea cual sea la cámara elegida arriba.</p>
+    <div class="card scroll"><div id="v-stack" style="min-width:860px"></div><div id="v-stack-leg"></div></div>
+    <div class="chart-grid" style="margin-top:16px">
+      <div class="card"><h3>Participación</h3><p>Votos emitidos sobre el padrón registrado.</p><div id="v-part"></div></div>
+      <div class="card"><h3>Votos en blanco y nulos</h3><p>Porcentaje de los votos emitidos.</p><div id="v-bn"></div></div>
+      <div class="card"><h3>Votos de la primera fuerza</h3><p>Porcentaje de votos positivos contra el 56 % de bancas que recibe.</p><div id="v-win"></div></div>
+    </div>
+    <div class="card scroll" style="margin-top:16px"><table id="tbl-votes"></table></div>
+  </section>
+
+  <section id="dhondt">
+    <h2>Bancas reales y bancas por D’Hondt</h2>
+    <p class="lede">Cómo habría quedado la cámara si las 50 bancas se hubieran repartido por D’Hondt entre las listas que superan el piso, en lugar del premio de 28 bancas. Es un ejercicio sobre los votos de cada elección: no considera que votantes y partidos habrían actuado distinto con otro sistema.</p>
+    <ul class="findings" id="findings-votes"></ul>
+    <p style="font-size:13px;color:#586272;margin:8px 0 14px">Las cifras del texto usan el piso del 3 % del padrón. Los gráficos y las tablas siguen el piso que elijas.</p>
+    <div class="ctrl"><span>Piso para el reparto:</span><div class="seg" id="piso-seg" role="group" aria-label="Piso"></div></div>
+    <div class="chart-grid">
+      <div class="card"><h3>Bancas de la primera fuerza</h3><p>Reales contra D’Hondt. La línea marca la mayoría absoluta (26).</p><div id="d-top"></div></div>
+      <div class="card"><h3>Número efectivo de partidos</h3><p>Con los votos, con las bancas reales y con las bancas por D’Hondt.</p><div id="d-nep"></div></div>
+      <div class="card"><h3>Desproporcionalidad (Gallagher)</h3><p>Distancia entre porcentaje de votos y de bancas. Más alto = menos proporcional.</p><div id="d-gal"></div></div>
+    </div>
+    <div class="card scroll" style="margin-top:16px"><table id="tbl-dh" style="min-width:980px"></table></div>
+    <div class="card" style="margin-top:16px">
+      <h3 style="font:600 16px var(--sans);margin:0 0 8px">Detalle por elección</h3>
+      <div class="periods" id="v-elecs" role="group" aria-label="Elección"></div>
+      <div class="two">
+        <div><h4>Reparto real</h4><p id="dh-cap-real"></p><div id="dh-hemi-real"></div></div>
+        <div><h4>Reparto por D’Hondt</h4><p id="dh-cap-dh"></p><div id="dh-hemi-dh"></div></div>
+      </div>
+      <div class="scroll" style="margin-top:14px"><table id="tbl-detail" style="min-width:760px"></table></div>
+    </div>
+  </section>
+
+</main>
+<footer><div class="wrap">Fuente: Evolución_Legislatura_Santafesina.xlsx (bancas y relaciones partidarias) y Resultados_Elecciones_Diputados_Santafesinos.xlsx (votos). Indicadores calculados sobre esas bases. Archivo autocontenido: no carga recursos externos.</div></footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = {"chambers": {"dip": {"label": "Cámara de Diputados", "total": 50, "parties": ["UCR", "PJ", "PDP", "PS", "Alianza Santafesina", "Encuentro Santafesino", "ARI", "Frente Progresista", "PRO", "FSP / FAP", "Igualdad y Participación", "UNITE", "Unidos para Cambiar Santa Fe", "Viva la Libertad"], "periods": [{"year": 1983, "gov": "PJ", "seats": {"UCR": 18, "PJ": 28, "PDP": 4}}, {"year": 1987, "gov": "PJ", "seats": {"UCR": 13, "PJ": 28, "PDP": 6, "PS": 3}}, {"year": 1991, "gov": "PJ", "seats": {"UCR": 17, "PJ": 28, "PDP": 1, "PS": 4}}, {"year": 1995, "gov": "PJ", "seats": {"PJ": 28, "Alianza Santafesina": 22}}, {"year": 1999, "gov": "PJ", "seats": {"PJ": 28, "Alianza Santafesina": 22}}, {"year": 2003, "gov": "PJ", "seats": {"PJ": 28, "Encuentro Santafesino": 18, "ARI": 4}}, {"year": 2007, "gov": "PS", "seats": {"PJ": 22, "Frente Progresista": 28}}, {"year": 2011, "gov": "PS", "seats": {"PJ": 28, "Frente Progresista": 15, "PRO": 7}}, {"year": 2015, "gov": "PS", "seats": {"PJ": 10, "Frente Progresista": 28, "PRO": 10, "FSP / FAP": 2}}, {"year": 2019, "gov": "PJ", "seats": {"PJ": 7, "Frente Progresista": 28, "PRO": 5, "FSP / FAP": 2, "Igualdad y Participación": 2, "UNITE": 6}}, {"year": 2023, "gov": "UCR", "seats": {"PJ": 10, "FSP / FAP": 3, "UNITE": 7, "Unidos para Cambiar Santa Fe": 28, "Viva la Libertad": 2}}]}, "sen": {"label": "Senado", "total": 19, "parties": ["UCR", "PJ", "Alianza Santafesina", "Encuentro Progresista", "Frente Progresista", "PRO", "Unidos para Cambiar Santa Fe", "UNITE"], "periods": [{"year": 1983, "gov": "PJ", "seats": {"UCR": 10, "PJ": 9}}, {"year": 1987, "gov": "PJ", "seats": {"UCR": 3, "PJ": 16}}, {"year": 1991, "gov": "PJ", "seats": {"UCR": 4, "PJ": 15}}, {"year": 1995, "gov": "PJ", "seats": {"PJ": 13, "Alianza Santafesina": 6}}, {"year": 1999, "gov": "PJ", "seats": {"PJ": 15, "Alianza Santafesina": 4}}, {"year": 2003, "gov": "PJ", "seats": {"PJ": 15, "Encuentro Progresista": 4}}, {"year": 2007, "gov": "PS", "seats": {"UCR": 1, "PJ": 13, "Frente Progresista": 5}}, {"year": 2011, "gov": "PS", "seats": {"PJ": 11, "Frente Progresista": 8}}, {"year": 2015, "gov": "PS", "seats": {"PJ": 11, "Frente Progresista": 8}}, {"year": 2019, "gov": "PJ", "seats": {"PJ": 11, "Frente Progresista": 7, "PRO": 1}}, {"year": 2023, "gov": "UCR", "seats": {"PJ": 5, "Unidos para Cambiar Santa Fe": 13, "UNITE": 1}}]}}, "family": {"UCR": "Alianza Social Demócrata", "FSP / FAP": "Otras Fuerzas Independientes", "Viva la Libertad": "Libertarios", "PDP": "Alianza Social Demócrata", "Igualdad y Participación": "Otras Fuerzas Independientes", "PS": "Alianza Social Demócrata", "UNITE": "Otras Fuerzas Independientes", "Alianza Santafesina": "Alianza Social Demócrata", "Encuentro Santafesino": "Alianza Social Demócrata", "ARI": "Alianza Social Demócrata", "Frente Progresista": "Alianza Social Demócrata", "PRO": "Alianza Social Demócrata", "Unidos para Cambiar Santa Fe": "Alianza Social Demócrata", "PJ": "Peronismo", "Encuentro Progresista": "Alianza Social Demócrata", "Frente País Solidario": "Sin clasificar", "MODIN": "Sin clasificar", "Izquierda": "Sin clasificar", "Partido Obrero": "Sin clasificar", "Partido Humanista": "Sin clasificar", "Alianza Social Cristiana del Tercer Milenio": "Sin clasificar", "Proyecto Sur": "Sin clasificar", "Política Abierta para la Integridad Social": "Sin clasificar", "Partido Demócrata Cristiano": "Sin clasificar", "Partido Autonomista de Santa Fe": "Sin clasificar", "MIJD": "Sin clasificar", "Frente Renovador": "Sin clasificar", "Espacio Grande": "Sin clasificar", "Confluencia Santafesina": "Sin clasificar"}, "famOrder": ["Alianza Social Demócrata", "Peronismo", "Otras Fuerzas Independientes", "Libertarios", "Sin clasificar"], "colors": {"PJ": "#1f5fbf", "UCR": "#9b1c24", "PS": "#ee7f78", "PDP": "#f19a4a", "Alianza Santafesina": "#d8527f", "Encuentro Santafesino": "#f3a8c1", "Encuentro Progresista": "#f3a8c1", "ARI": "#c97aa0", "Frente Progresista": "#e4572e", "Unidos para Cambiar Santa Fe": "#e78222", "PRO": "#f2c230", "FSP / FAP": "#4f9a85", "Igualdad y Participación": "#9aa7a1", "UNITE": "#22d3ff", "Viva la Libertad": "#7b4fd0"}, "famColors": {"Alianza Social Demócrata": "#e4572e", "Peronismo": "#1f5fbf", "Otras Fuerzas Independientes": "#4f9a85", "Libertarios": "#7b4fd0", "Sin clasificar": "#9aa3ae"}, "presidents": {"1983": {"name": "Alfonsín (UCR)", "family": "Alianza Social Demócrata", "fshort": "ASD", "note": ""}, "1987": {"name": "Alfonsín (UCR)", "family": "Alianza Social Demócrata", "fshort": "ASD", "note": "Menem (PJ) asume en 1989"}, "1991": {"name": "Menem (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "1995": {"name": "Menem (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "1999": {"name": "De la Rúa (Alianza)", "family": "Alianza Social Demócrata", "fshort": "ASD", "note": "Renuncia en 2001; luego Duhalde (PJ)"}, "2003": {"name": "Kirchner (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "2007": {"name": "C. Fernández (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "2011": {"name": "C. Fernández (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "2015": {"name": "Macri (PRO)", "family": "Alianza Social Demócrata", "fshort": "ASD", "note": ""}, "2019": {"name": "A. Fernández (PJ)", "family": "Peronismo", "fshort": "Peronismo", "note": ""}, "2023": {"name": "Milei (LLA)", "family": "Libertarios", "fshort": "Libertarios", "note": ""}}, "govBloc": {"PJ": ["PJ"], "PS": ["Frente Progresista"], "UCR": ["Unidos para Cambiar Santa Fe"]}, "govFam": {"PJ": "Peronismo", "PS": "Alianza Social Demócrata", "UCR": "Alianza Social Demócrata"}, "counterfactual": {"seats": [17, 15, 10, 4, 4], "nep": 3.869969040247678}, "findings": {"dip": ["En los once períodos la primera fuerza tiene exactamente 28 de 50 bancas (56 %). Es el efecto del premio de mayoría: la concentración en la primera fuerza no cambió en cuarenta años. Lo que cambió es cómo se reparten las otras 22, que van por D’Hondt.", "El NEP va de 1,97 a 2,77. El piso corresponde a un reparto 28–22 entre dos fuerzas (1995, 1999 y 2007). El máximo es 2019, con seis fuerzas con bancas.", "Entre 1995 y 2011 la cámara tuvo 2 o 3 fuerzas con bancas. Desde 2015 tiene entre 4 y 6: la fragmentación ocurrió del lado del bloque que no gana.", "El peronismo tuvo la primera fuerza con 28 bancas en siete de los once períodos (1983–2003 y 2011). 2007, la primera elección tras el fin de la Ley de Lemas, es la primera de la serie en que no se lleva el premio (22 bancas); en 2015, 2019 y 2023 tiene 10, 7 y 10.", "La mayor volatilidad por familias es 2015 (36): el peronismo pasa de 28 a 10 bancas y la familia de los social demócratas de 22 a 38.", "Hay dos períodos de gobierno dividido: 2011 (gobernador del PS, primera fuerza PJ con 28) y 2019 (gobernador del PJ, primera fuerza Frente Progresista con 28). Ambos ocurren con boleta única por categoría, que permite votar distinto para cada cargo; entre 1983 y 2007 la primera fuerza fue siempre el bloque del gobernador. El Litoral registra los mismos dos casos desde la boleta única.", "NEP promedio por régimen electoral: 2,4 antes de la Ley de Lemas (1983–1987), 2,1 con lemas (1991–2003), 2,0 en 2007 (primeras PASO completas, todavía con boleta sábana) y 2,6 con PASO y boleta única (2011–2023). En ese último tramo las fuerzas con bancas promedian 4,5, contra 2,8 con lemas. Son entre 1 y 4 períodos por régimen: sirve para describir, no para atribuir causas.", "Desde 2027, tras la reforma constitucional de 2025, las 50 bancas se reparten por D’Hondt. Con el reparto publicado para los votos de 2023 (17-15-10-4-4), el NEP sería 3,9 frente a 2,6 con el sistema vigente."], "sen": ["El peronismo tuvo la primera fuerza del Senado en nueve de los once períodos (1987–2019). Las excepciones son 1983 (UCR, 10 a 9) y 2023 (Unidos para Cambiar Santa Fe, 13 de 19).", "El NEP va de 1,36 a 2,11: el Senado es más concentrado que Diputados. El mínimo es 1987, con 16 de 19 bancas del PJ.", "En 2007, 2011 y 2015 el gobernador era del PS y el PJ tenía mayoría absoluta en el Senado (13, 11 y 11 bancas). En 2007 y 2015 el Frente Progresista tenía 28 en Diputados; en 2011 el PJ tuvo la primera fuerza en ambas cámaras.", "En 2023 el PJ queda con 5 bancas, su registro más bajo de la serie, y Unidos para Cambiar Santa Fe llega a 13 de 19.", "NEP promedio por régimen: 1,7 (1983–1987), 1,6 con lemas (1991–2003), 1,9 en 2007 y 2,0 con PASO y boleta única (2011–2023). El PJ fue primera fuerza en los cuatro períodos con lemas y en tres de los cuatro con PASO y boleta única."]}, "assumptions": ["Sistema de Diputados hasta 2023: la lista más votada recibe 28 bancas y las 22 restantes se reparten por D’Hondt entre las demás listas. La reforma constitucional de 2025 elimina el premio y reparte las 50 bancas por D’Hondt.", "Régimen de cada período: el vigente en la elección. 1983 y 1987 figuran como “previo a la Ley de Lemas” (la ley es de 1990 y se aplica desde 1991) y no describo el sistema de esos años porque no lo verifiqué. 2007 es PASO con boleta sábana; 2011–2023, PASO con boleta única por categoría. Las PASO se usaron de forma parcial en 2005, año sin elección provincial de Diputados en la planilla.", "Fechas de las PASO de 2007: Página/12 cita la convocatoria del 1 de julio y Diario de Cuyo ubica la aplicación completa el 30 de junio. Por eso en el tablero figuran como “2007” sin día.", "Familias partidarias: las de tu hoja Relaciones Partidarias. El PJ no figura en esa hoja y lo asigné a Peronismo. “Encuentro Progresista” (solo en Senado) tampoco figura y lo asigné a Alianza Social Demócrata, igual que Encuentro Santafesino.", "Orden de los bloques en el hemiciclo: el de las columnas de tu hoja (Alianza Social Demócrata, Peronismo, Otras Fuerzas Independientes, Libertarios). No expresa un eje ideológico.", "Colores: rojos y naranjas para la familia social demócrata (UCR rojo oscuro, PS rojo claro, PRO amarillo, el resto en rosas), azul para el PJ, verdes y grises para las fuerzas independientes y violeta para los libertarios. Unidos para Cambiar Santa Fe usa el ciruela (#952d69) del degradé de su logo.", "Bloque del gobernador: PJ → PJ; PS → Frente Progresista; UCR → Unidos para Cambiar Santa Fe. “Mayoría propia” significa que ese bloque supera la mitad de las bancas. “Gobierno dividido” significa que la primera fuerza no es el bloque del gobernador y el bloque no tiene mayoría.", "Presidente al inicio del período (supuesto mío, a confirmar): los períodos provinciales empiezan en diciembre. En 1987 y 1999 hubo cambio de signo nacional a mitad de período (Menem en 1989; renuncia de De la Rúa en 2001). La familia del presidente sigue tu clasificación: PRO queda en Alianza Social Demócrata y La Libertad Avanza en Libertarios.", "Volatilidad: índice de Pedersen sobre proporciones de bancas (½ Σ|pₜ − pₜ₋₁|), por familia y por partido. Con premio de mayoría, las 28 bancas del ganador pesan mecánicamente en ambos índices.", "NEP: Laakso–Taagepera, 1 / Σp². Con 28 de 50 para la primera fuerza, el NEP máximo práctico queda por debajo de 3 salvo que el resto esté muy fragmentado.", "Reparto por D’Hondt: se reparten las 50 bancas entre las listas que superan el piso, con desempate a favor de la lista con más votos. La regla real hasta 2023 (28 bancas para la más votada y las otras 22 por D’Hondt entre las demás listas con piso del 3 % del padrón) reproduce las bancas de tu planilla en 10 de las 11 elecciones, así que uso ese piso como referencia. El caso que no coincide es 1991 (ver alertas).", "Piso: el 3 % del padrón es el de la regla vigente hasta 2023. El 4 % es solo una hipótesis a partir de la propuesta en discusión (no sé sobre qué base se calcularía) y “sin piso” reparte solo entre las listas detalladas en tu planilla de votos.", "El reparto D’Hondt de 2023 con piso del 3 % del padrón (Unidos 17, PJ 15, UNITE 10, FSP/FAP 4, Viva la Libertad 4) coincide con el publicado por Letra P, que llama Somos Vida a la lista de 10 bancas. Que sea la misma lista que UNITE es una inferencia mía por la coincidencia de los números.", "Votos: porcentajes sobre votos positivos (los votos a listas, sin blancos ni nulos). Participación = (positivos + blancos + nulos) sobre el padrón. La parte de los positivos que no está detallada en listas se muestra como “Otras listas” y no entra en el NEP de votos, que queda como una cota inferior.", "Desproporcionalidad: índice de Gallagher sobre porcentaje de votos y de bancas por lista, con las listas sin detalle como una categoría sin bancas.", "Correspondencia entre planillas: en 1983–1991 y 2007 la columna “UCR / Alianza Santafesina” se toma como UCR y en 1995–1999 como Alianza Santafesina. En 2003 la columna “Frente Progresista” de votos se asocia a Encuentro Santafesino (18 bancas) de la planilla de bancas. Las listas que no están en tu hoja de relaciones (Izquierda, Frente Renovador, Proyecto Sur, etc.) quedan como “Sin clasificar”."], "votes": [{"year": 1983, "pos": 1400557, "nulos": 3276, "blanco": 75787, "padron": 1676080, "lists": [{"key": "UCR", "col": "UCR / Alianza Santafesina", "votes": 565883}, {"key": "PJ", "col": "PJ", "votes": 575271}, {"key": "PDP", "col": "PDP", "votes": 133935}, {"key": "PS", "col": "PS", "votes": 11230}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 1626}, {"key": "Partido Demócrata Cristiano", "col": "Partido Demócrata Cristiano", "votes": 10273}]}, {"year": 1987, "pos": 1511845, "nulos": 6516, "blanco": 34105, "padron": 1793963, "lists": [{"key": "UCR", "col": "UCR / Alianza Santafesina", "votes": 418400}, {"key": "PJ", "col": "PJ", "votes": 647352}, {"key": "PDP", "col": "PDP", "votes": 199594}, {"key": "PS", "col": "PS", "votes": 120388}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 3927}, {"key": "Frente Renovador", "col": "Frente Renovador", "votes": 4820}]}, {"year": 1991, "pos": 1411355, "nulos": 10081, "blanco": 144721, "padron": 1883954, "lists": [{"key": "UCR", "col": "UCR / Alianza Santafesina", "votes": 549062}, {"key": "PJ", "col": "PJ", "votes": 625558}, {"key": "PDP", "col": "PDP", "votes": 66212}, {"key": "PS", "col": "PS", "votes": 143272}, {"key": "Partido Demócrata Cristiano", "col": "Partido Demócrata Cristiano", "votes": 2562}]}, {"year": 1995, "pos": 1460993, "nulos": 9050, "blanco": 153279, "padron": 2000377, "lists": [{"key": "Alianza Santafesina", "col": "UCR / Alianza Santafesina", "votes": 665543}, {"key": "PJ", "col": "PJ", "votes": 761077}, {"key": "Frente País Solidario", "col": "Frente País Solidario", "votes": 18072}, {"key": "MODIN", "col": "MODIN", "votes": 9753}]}, {"year": 1999, "pos": 1505271, "nulos": 11890, "blanco": 199437, "padron": 2138698, "lists": [{"key": "Alianza Santafesina", "col": "UCR / Alianza Santafesina", "votes": 666171}, {"key": "PJ", "col": "PJ", "votes": 814879}, {"key": "Izquierda", "col": "Izquierda", "votes": 7607}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 6553}, {"key": "Partido Humanista", "col": "Partido Humanista", "votes": 6072}, {"key": "Alianza Social Cristiana del Tercer Milenio", "col": "Alianza Social Cristiana del Tercer Milenio", "votes": 3989}]}, {"year": 2003, "pos": 1275814, "nulos": 19873, "blanco": 395060, "padron": 2235568, "lists": [{"key": "PJ", "col": "PJ", "votes": 650778}, {"key": "PDP", "col": "PDP", "votes": 44185}, {"key": "ARI", "col": "ARI", "votes": 102641}, {"key": "Encuentro Santafesino", "col": "Frente Progresista", "votes": 448462}, {"key": "Izquierda", "col": "Izquierda", "votes": 10685}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 5306}, {"key": "Partido Humanista", "col": "Partido Humanista", "votes": 5636}, {"key": "Partido Demócrata Cristiano", "col": "Partido Demócrata Cristiano", "votes": 3987}]}, {"year": 2007, "pos": 1572572, "nulos": 16711, "blanco": 201891, "padron": 2325135, "lists": [{"key": "UCR", "col": "UCR / Alianza Santafesina", "votes": 48147}, {"key": "PJ", "col": "PJ", "votes": 660217}, {"key": "Frente Progresista", "col": "Frente Progresista", "votes": 790927}, {"key": "MODIN", "col": "MODIN", "votes": 4329}, {"key": "Izquierda", "col": "Izquierda", "votes": 7280}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 9761}, {"key": "Partido Humanista", "col": "Partido Humanista", "votes": 10274}, {"key": "Partido Autonomista de Santa Fe", "col": "Partido Autonomista de Santa Fe", "votes": 3456}, {"key": "Confluencia Santafesina", "col": "Confluencia Santafesina", "votes": 11233}]}, {"year": 2011, "pos": 1525116, "nulos": 148320, "blanco": 151527, "padron": 2437901, "lists": [{"key": "PJ", "col": "PJ", "votes": 581363}, {"key": "Frente Progresista", "col": "Frente Progresista", "votes": 550882}, {"key": "PRO", "col": "PRO", "votes": 246445}, {"key": "Partido Obrero", "col": "Partido Obrero", "votes": 19259}, {"key": "Proyecto Sur", "col": "Proyecto Sur", "votes": 60426}, {"key": "Política Abierta para la Integridad Social", "col": "Política Abierta para la Integridad Social", "votes": 23999}, {"key": "Partido Demócrata Cristiano", "col": "Partido Demócrata Cristiano", "votes": 21552}, {"key": "Partido Autonomista de Santa Fe", "col": "Partido Autonomista de Santa Fe", "votes": 11817}, {"key": "MIJD", "col": "MIJD", "votes": 9373}]}, {"year": 2015, "pos": 1752094, "nulos": 79865, "blanco": 138042, "padron": 2580882, "lists": [{"key": "PJ", "col": "PJ", "votes": 355375}, {"key": "Frente Progresista", "col": "Frente Progresista", "votes": 765078}, {"key": "PRO", "col": "PRO", "votes": 340772}, {"key": "FSP / FAP", "col": "FSP / FAP", "votes": 92075}, {"key": "UNITE", "col": "UNITE", "votes": 67150}, {"key": "Izquierda", "col": "Izquierda", "votes": 66845}, {"key": "Frente Renovador", "col": "Frente Renovador", "votes": 64799}]}, {"year": 2019, "pos": 1730400, "nulos": 82819, "blanco": 110501, "padron": 2675157, "lists": [{"key": "PJ", "col": "PJ", "votes": 323801}, {"key": "Frente Progresista", "col": "Frente Progresista", "votes": 712485}, {"key": "PRO", "col": "PRO", "votes": 223395}, {"key": "FSP / FAP", "col": "FSP / FAP", "votes": 99374}, {"key": "Igualdad y Participación", "col": "Igualdad y Participación", "votes": 83640}, {"key": "UNITE", "col": "UNITE", "votes": 287705}]}, {"year": 2023, "pos": 1735493, "nulos": 77341, "blanco": 106791, "padron": 2813695, "lists": [{"key": "PJ", "col": "PJ", "votes": 484161}, {"key": "FSP / FAP", "col": "FSP / FAP", "votes": 132278}, {"key": "Igualdad y Participación", "col": "Igualdad y Participación", "votes": 70980}, {"key": "UNITE", "col": "UNITE", "votes": 345551}, {"key": "Unidos para Cambiar Santa Fe", "col": "Unidos para Cambiar Santa Fe", "votes": 573639}, {"key": "Viva la Libertad", "col": "Viva la Libertad", "votes": 128884}]}], "voteOrder": ["UCR", "PDP", "PS", "Alianza Santafesina", "Encuentro Santafesino", "ARI", "Frente Progresista", "PRO", "Unidos para Cambiar Santa Fe", "PJ", "FSP / FAP", "Igualdad y Participación", "UNITE", "Viva la Libertad", "Alianza Social Cristiana del Tercer Milenio", "Confluencia Santafesina", "Frente País Solidario", "Frente Renovador", "Izquierda", "MIJD", "MODIN", "Partido Autonomista de Santa Fe", "Partido Demócrata Cristiano", "Partido Humanista", "Partido Obrero", "Política Abierta para la Integridad Social", "Proyecto Sur"], "pisos": [{"id": "none", "label": "Sin piso", "pct": 0}, {"id": "padron3", "label": "3 % del padrón (régimen hasta 2023)", "pct": 0.03}, {"id": "padron4", "label": "4 % del padrón (hipótesis de la propuesta en debate)", "pct": 0.04}], "dataAlerts": ["<b>Diputados 1991 (bancas):</b> tu planilla tiene UCR 17, PDP 1, PS 4 y PJ 28. Aplicando 28 + D’Hondt a los votos de la otra planilla (piso del 3 % del padrón) da UCR 16, PDP 2, PS 4 y PJ 28, que también suma 50. Es probable que la corrección de la suma de 51 haya recaído en la fila equivocada. Conviene confirmarlo con el escrutinio definitivo.", "<b>Votos positivos que no coinciden con la suma de listas:</b> 1983 (102.339 votos, 7,3 %), 1987 (117.364, 7,8 %), 1991 (24.689, 1,7 %), 1995 (6.548, 0,4 %), 2003 (4.134, 0,3 %) y 2007 (26.948, 1,7 %). En el tablero figuran como “Otras listas”. Conviene revisar si faltan listas cargadas. Como las bancas reales coinciden con el cálculo, es poco probable que falte una lista que supere el piso.", "<b>Diputados 2011 (Proyecto Sur):</b> la planilla da PRO 7 y Proyecto Sur sin bancas (60.426 votos, 2,5 % del padrón). Es lo que resulta con un piso del 3 % del padrón. Diario de Cuyo informó PRO 6 y Proyecto Sur 1, resultado que solo se obtiene con un piso del 3 % de los votos positivos, criterio que no replica 2003, 2007, 2015 ni 2023. Es probable que la nota reflejara un conteo provisorio. Conviene confirmarlo con el escrutinio definitivo.", "<b>Diputados 2007 (UCR):</b> la columna “UCR / Alianza Santafesina” tiene 48.147 votos en 2007 y la tomé como UCR. Solo obtendría una banca si no hubiera piso."], "findingsVotes": ["Control: con el piso del 3 % del padrón, aplicar 28 bancas a la lista más votada y D’Hondt a las otras 22 reproduce las bancas reales en 10 de las 11 elecciones. La excepción es 1991 (ver alertas).", "El premio le da a la primera fuerza el 56 % de las bancas con entre 33 % (2023) y 54 % (1999) de los votos positivos. La diferencia supera los 10 puntos en 1983, 1987, 1991, 2011, 2015, 2019 y 2023.", "En 1983 el PJ le ganó a la UCR por 9.388 votos (0,7 puntos) y el premio lo transformó en una diferencia de 10 bancas (28 a 18). Con D’Hondt habría sido 23 a 22. En 2011 una ventaja de 2,0 puntos del PJ sobre el Frente Progresista se convirtió en 28 contra 15; con D’Hondt, 21 contra 20.", "Con D’Hondt la primera fuerza habría sido la misma en las 11 elecciones, pero solo habría alcanzado la mayoría absoluta (26 bancas) en 4: 1995, 1999, 2003 y 2007. En 2023 habría tenido 17 bancas, 11 menos que las reales.", "Cambian de manos entre 0 y 11 bancas por elección, con el piso del 3 %: 11 en 2023, 7 en 2011 y 6 en 2019. El bloque del gobernador pasaría de tener mayoría propia en 9 de las 11 elecciones a tenerla en 4.", "Los votos nulos pasan de menos del 1,2 % de los votos emitidos entre 1983 y 2007 a 8,1 % en 2011, el debut de la boleta única, y quedan alrededor del 4 % desde 2015.", "La participación baja de 88,3 % en 1983 a 68,2 % en 2023. El voto en blanco tuvo su pico en 2003, con 23,4 % de los votos emitidos."], "regimes": [{"id": "previo", "name": "Previo a la Ley de Lemas", "short": "Previo", "tint": "#eceff3"}, {"id": "lemas", "name": "Ley de Lemas", "short": "Ley de Lemas", "tint": "#f4ecd8"}, {"id": "paso_sabana", "name": "PASO con boleta sábana", "short": "PASO + sábana", "tint": "#e3edf2"}, {"id": "paso_bu", "name": "PASO con boleta única", "short": "PASO + boleta única", "tint": "#ebe9f4"}], "regimeByYear": {"1983": "previo", "1987": "previo", "1991": "lemas", "1995": "lemas", "1999": "lemas", "2003": "lemas", "2007": "paso_sabana", "2011": "paso_bu", "2015": "paso_bu", "2019": "paso_bu", "2023": "paso_bu"}, "hitos": [{"x": 1990, "level": 0, "anchor": "start", "short": "Ley de Lemas", "date": "1990", "title": "Ley de Lemas (Ley 10.524)", "text": "Vigente desde 1990 y aplicada en las elecciones de 1991, 1995, 1999 y 2003. Es un doble voto simultáneo: la interna se traslada a la elección general y se suman los votos de las listas de un mismo lema. Según Diario de Cuyo, permitió que Reutemann y Obeid llegaran a la gobernación con menos votos que sus principales opositores."}, {"x": 2004.95, "level": 0, "anchor": "end", "short": "Fin de la Ley de Lemas", "date": "Fines de 2004", "title": "Ley 12.367: fin de la Ley de Lemas", "text": "La Legislatura la sanciona en la última sesión de 2004. Reemplaza los lemas por primarias abiertas, simultáneas y obligatorias, con un solo voto por ciudadano."}, {"x": 2007.5, "level": 0, "anchor": "start", "short": "PASO completas", "date": "2005 parcial · 2007 completas", "title": "Primeras PASO", "text": "Se usan por primera vez, de forma parcial, en agosto de 2005 y se aplican completas en 2007. Binner (PS) es el candidato más votado y gana la gobernación."}, {"x": 2011.4, "level": 1, "anchor": "start", "short": "Boleta única", "date": "22 de mayo de 2011", "title": "Boleta única por categoría (Ley 13.156)", "text": "El Senado la sanciona el 25 de noviembre de 2010 y debuta en las PASO del 22 de mayo de 2011. Santa Fe es la primera provincia en usarla para todo el electorado. La ley unifica además el padrón: se eliminan las mesas por sexo."}, {"x": 2025.7, "level": 0, "anchor": "end", "short": "Reforma constitucional", "date": "2025", "title": "Reforma constitucional", "text": "Elimina el premio de 28 bancas: las 50 se reparten por D’Hondt, con aplicación prevista desde 2027. Sigue en discusión la reforma electoral (piso del 4 % y boleta común para gobernador y diputados)."}], "sources": ["Ley Nº 12.367, texto actualizado (Tribunal Electoral de la Provincia de Santa Fe).", "CIPPEC, Manual Santa Fe Elecciones 2011: Ley 12.367/2004, Ley de Lemas vigente desde 1990, debut de la boleta única el 22 de mayo de 2011.", "Diario de Cuyo, nota sobre las internas de Santa Fe (2009): sanción de la Ley 12.367 en la última sesión de 2004, PASO parciales en agosto de 2005 y completas en 2007, efectos de la Ley de Lemas.", "Página/12 (Rosario/12), 5 de diciembre de 2010: sanción de la boleta única por el Senado el 25 de noviembre de 2010.", "UNL, Observatorio Social: Ley 10.524 reemplazada por la Ley 12.367 a fines de 2004. Revista de la UCC: Ley de Lemas aplicada entre 1991 y 2003.", "El Litoral, nota sobre la elección de 2023: primera aplicación de la Ley de Lemas y dos casos de mayoría legislativa distinta del Ejecutivo desde la boleta única.", "La Capital (27/8/2025) y Letra P: reforma constitucional de 2025 y reforma electoral en discusión."]};
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const fmt = (x,d=1) => x.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fam = p => D.family[p] || 'Alianza Social Demócrata';
+const col = p => D.colors[p] || '#999';
+const famCol = f => D.famColors[f];
+function lum(hex){const n=parseInt(hex.slice(1),16);const r=n>>16,g=(n>>8)&255,b=n&255;return (0.299*r+0.587*g+0.114*b)/255;}
+const txtOn = hex => lum(hex)>0.62 ? '#1b2430' : '#ffffff';
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const tipAttr = s => ' data-tip="'+esc(s)+'"';
+
+let state = {ch:'dip', pi:null, vi:null, piso:'padron3'};
+
+function orderedParties(ch){
+  const base = D.chambers[ch].parties;
+  return base.slice().sort((a,b)=> D.famOrder.indexOf(fam(a))-D.famOrder.indexOf(fam(b)) || base.indexOf(a)-base.indexOf(b));
+}
+
+/* ---------- cálculo de indicadores ---------- */
+function stats(ch){
+  const C = D.chambers[ch], order = orderedParties(ch);
+  const maj = Math.floor(C.total/2)+1;
+  const rows = C.periods.map(p=>{
+    const seats = p.seats;
+    const tot = Object.values(seats).reduce((a,b)=>a+b,0);
+    const list = order.filter(k=>seats[k]).map(k=>({party:k,seats:seats[k],fam:fam(k)}));
+    const nep = 1/list.reduce((a,x)=>a+Math.pow(x.seats/tot,2),0);
+    const top = list.reduce((a,b)=>b.seats>a.seats?b:a);
+    const famSeats = {}; list.forEach(x=>famSeats[x.fam]=(famSeats[x.fam]||0)+x.seats);
+    const bloc = D.govBloc[p.gov]||[];
+    const govSeats = bloc.reduce((a,k)=>a+(seats[k]||0),0);
+    const pres = D.presidents[p.year];
+    const presSeats = famSeats[pres.family]||0;
+    let gob;
+    if(govSeats>=maj) gob='Mayoría propia';
+    else if(bloc.includes(top.party)) gob='Primera minoría propia';
+    else gob='Gobierno dividido';
+    return {year:p.year,gov:p.gov,tot,list,nep,top,famSeats,govSeats,gob,pres,presSeats,seats,nParties:list.length,
+            topCond: top.seats>=maj?'Mayoría absoluta':'Primera minoría'};
+  });
+  rows.forEach((r,i)=>{
+    if(i===0){r.volFam=null;r.volParty=null;return;}
+    const q = rows[i-1];
+    const keysP = new Set([...Object.keys(r.seats),...Object.keys(q.seats)]);
+    let sp=0; keysP.forEach(k=>sp+=Math.abs((r.seats[k]||0)/r.tot-(q.seats[k]||0)/q.tot));
+    const keysF = new Set([...Object.keys(r.famSeats),...Object.keys(q.famSeats)]);
+    let sf=0; keysF.forEach(k=>sf+=Math.abs((r.famSeats[k]||0)/r.tot-(q.famSeats[k]||0)/q.tot));
+    r.volParty=50*sp; r.volFam=50*sf;
+  });
+  return {rows,maj,C};
+}
+
+/* ---------- regímenes e hitos ---------- */
+const regOf = y => D.regimes.find(r=>r.id===D.regimeByYear[y]);
+function bandsSVG(f,labels){
+  const n=labels.length; let out='', i=0;
+  while(i<n){
+    const id=D.regimeByYear[labels[i]]; let j=i;
+    while(j+1<n && D.regimeByYear[labels[j+1]]===id) j++;
+    const x0=f.m.l+f.iw*i/n, x1=f.m.l+f.iw*(j+1)/n;
+    out+='<rect x="'+x0.toFixed(1)+'" y="'+f.m.t+'" width="'+(x1-x0).toFixed(1)+'" height="'+f.ih+'" fill="'+regOf(labels[i]).tint+'"/>';
+    i=j+1;
+  }
+  return out;
+}
+function renderRegLegend(){
+  $('#reg-leg').innerHTML='Franjas de fondo: '+D.regimes.map(r=>'<span><i style="background:'+r.tint+'"></i>'+r.name+'</span>').join('');
+}
+function renderTimeline(){
+  const {rows}=stats(state.ch);
+  const W=1120,H=250,ml=30,mr=30,y0=1983,y1=2029, sx=y=>ml+(y-y0)*(W-ml-mr)/(y1-y0);
+  const bandTop=124, bandBot=216;
+  const bands=[
+    {from:1983,to:1990,id:'previo'},{from:1990,to:2004.95,id:'lemas'},
+    {from:2004.95,to:2010.9,id:'paso_sabana'},{from:2010.9,to:2025.7,id:'paso_bu'}];
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Línea de tiempo de hitos del sistema electoral" style="width:100%;height:auto;display:block">';
+  bands.forEach(b=>{
+    const r=D.regimes.find(x=>x.id===b.id), xa=sx(b.from), xb=sx(b.to);
+    s+='<rect x="'+xa+'" y="'+bandTop+'" width="'+(xb-xa)+'" height="'+(bandBot-bandTop)+'" fill="'+r.tint+'"'+tipAttr(r.name)+'/>';
+    s+='<text x="'+((xa+xb)/2)+'" y="'+(bandBot-10)+'" text-anchor="middle" font-size="12.5" font-weight="600" fill="#586272" pointer-events="none">'+r.short+'</text>';
+  });
+  const xf=sx(2025.7), xe=sx(y1);
+  s+='<rect x="'+xf+'" y="'+bandTop+'" width="'+(xe-xf)+'" height="'+(bandBot-bandTop)+'" fill="#fff" stroke="#c9d0d9" stroke-dasharray="4 3"/>';
+  s+='<text x="'+((xf+xe)/2)+'" y="'+(bandBot-10)+'" text-anchor="middle" font-size="12" fill="#586272" pointer-events="none">Reforma 2025</text>';
+  // hitos
+  D.hitos.forEach(h=>{
+    const x=sx(h.x), ty=h.level===0?24:62;
+    s+='<line x1="'+x+'" x2="'+x+'" y1="'+(ty+22)+'" y2="'+bandTop+'" stroke="#586272"/>';
+    s+='<path d="M'+x+' '+(bandTop-1)+' l-5 -9 h10 z" fill="#1b2430"/>';
+    s+='<text x="'+(h.anchor==='end'?x-6:x+6)+'" y="'+ty+'" text-anchor="'+h.anchor+'" font-size="13.5" font-weight="700" fill="#1b2430"'+tipAttr(h.title+' · '+h.date)+'>'+h.short+'</text>';
+    s+='<text x="'+(h.anchor==='end'?x-6:x+6)+'" y="'+(ty+16)+'" text-anchor="'+h.anchor+'" font-size="12" fill="#586272">'+h.date+'</text>';
+  });
+  // elecciones
+  rows.forEach(r=>{
+    const x=sx(r.year);
+    s+='<circle cx="'+x+'" cy="150" r="9" fill="'+col(r.top.party)+'" stroke="#fff" stroke-width="2"'+tipAttr(r.year+': '+r.top.party+' primera fuerza con '+r.top.seats+' bancas. Gobernador: '+r.gov+'. NEP '+fmt(r.nep,2))+'/>';
+    s+='<text x="'+x+'" y="178" text-anchor="middle" font-size="12" fill="#1b2430" pointer-events="none">'+r.year+'</text>';
+  });
+  s+='<circle cx="'+sx(2027)+'" cy="150" r="9" fill="#fff" stroke="#586272" stroke-dasharray="3 2" stroke-width="1.6"'+tipAttr('2027: primera elección con las 50 bancas por D’Hondt')+'/>';
+  s+='<text x="'+sx(2027)+'" y="178" text-anchor="middle" font-size="12" fill="#586272" pointer-events="none">2027</text>';
+  $('#timeline').innerHTML=s+'</svg>';
+  $('#hito-cards').innerHTML=D.hitos.map(h=>'<div class="hito"><div class="d">'+h.date+'</div><h3>'+h.title+'</h3><div>'+h.text+'</div></div>').join('');
+}
+function renderRegTable(){
+  const {rows}=stats(state.ch);
+  let h='<thead><tr><th>Régimen</th><th>Períodos</th><th>NEP promedio</th><th>Fuerzas con bancas (promedio)</th><th>Períodos con el PJ como primera fuerza</th><th>Gobiernos divididos</th></tr></thead><tbody>';
+  D.regimes.forEach(r=>{
+    const g=rows.filter(x=>D.regimeByYear[x.year]===r.id); if(!g.length) return;
+    const avg=a=>a.reduce((p,q)=>p+q,0)/a.length;
+    h+='<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:'+r.tint+';border:1px solid #d3d8df;margin-right:6px;vertical-align:-1px"></span>'+r.name+'</td>'
+      +'<td>'+g.map(x=>x.year).join(', ')+'</td>'
+      +'<td class="num">'+fmt(avg(g.map(x=>x.nep)),2)+'</td>'
+      +'<td class="num">'+fmt(avg(g.map(x=>x.nParties)),1)+'</td>'
+      +'<td class="num">'+g.filter(x=>x.top.party==='PJ').length+' de '+g.length+'</td>'
+      +'<td class="num">'+g.filter(x=>x.gob==='Gobierno dividido').length+' de '+g.length+'</td></tr>';
+  });
+  $('#tbl-reg').innerHTML=h+'</tbody>';
+}
+
+/* ---------- hemiciclo ---------- */
+const layoutCache = {};
+function layout(N){
+  if(layoutCache[N]) return layoutCache[N];
+  const R = N>=40?4:(N>=30?3:2);
+  const k = 2*(N-R)/(Math.PI*R*(R-1));
+  let rMin = (k-1)/(k+1); rMin = Math.max(.2,Math.min(.7,rMin));
+  const rad = [...Array(R)].map((_,i)=>rMin+(1-rMin)*i/(R-1));
+  const sumR = rad.reduce((a,b)=>a+b,0);
+  const n = rad.map(r=>Math.floor(N*r/sumR));
+  let rem = N-n.reduce((a,b)=>a+b,0);
+  rad.map((r,i)=>({i,f:N*r/sumR-n[i]})).sort((a,b)=>b.f-a.f).slice(0,rem).forEach(o=>n[o.i]++);
+  const seats = [];
+  rad.forEach((r,i)=>{for(let j=0;j<n[i];j++){seats.push({th:n[i]===1?Math.PI/2:Math.PI*(1-j/(n[i]-1)),r});}});
+  seats.sort((a,b)=>(b.th-a.th)||(a.r-b.r));
+  let minSp = (1-rMin)/(R-1);
+  rad.forEach((r,i)=>{if(n[i]>1) minSp=Math.min(minSp,Math.PI*r/(n[i]-1));});
+  return layoutCache[N]={seats,dot:minSp*.42};
+}
+function hemiSVG(row, opt){
+  const L = layout(row.tot), Rpx = opt.R, pad = L.dot*Rpx+4;
+  const w = 2*(Rpx+pad), h = Rpx+pad+L.dot*Rpx+4+(opt.foot||0);
+  const cx = w/2, cy = Rpx+pad;
+  const seq = []; row.list.forEach(x=>{for(let i=0;i<x.seats;i++) seq.push(x.party);});
+  let out = '<svg class="hemi" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="Hemiciclo '+row.year+': '+row.tot+' bancas" style="width:100%;height:auto;display:block">';
+  L.seats.forEach((s,i)=>{
+    const p = seq[i]; if(!p) return;
+    const x = cx + s.r*Rpx*Math.cos(s.th), y = cy - s.r*Rpx*Math.sin(s.th);
+    out += '<circle class="seat" data-p="'+esc(p)+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(L.dot*Rpx).toFixed(1)+'" fill="'+col(p)+'"'+tipAttr(p+': '+row.seats[p]+' bancas')+'/>';
+  });
+  out += '<text x="'+cx+'" y="'+(cy-Rpx*.06)+'" text-anchor="middle" font-size="'+(Rpx*(opt.numScale||.26)).toFixed(0)+'" font-weight="700" fill="#1b2430">'+row.tot+'</text>';
+  if(opt.sub) out += '<text x="'+cx+'" y="'+(cy+Rpx*.1)+'" text-anchor="middle" font-size="'+(Rpx*.075).toFixed(0)+'" fill="#586272">mayoría absoluta: '+opt.maj+'</text>';
+  return out+'</svg>';
+}
+
+function renderHemi(){
+  const {rows,maj,C} = stats(state.ch);
+  if(state.pi===null || state.pi>=rows.length) state.pi = rows.length-1;
+  $('#periods').innerHTML = rows.map((r,i)=>'<button data-pi="'+i+'" aria-pressed="'+(i===state.pi)+'">'+r.year+'</button>').join('');
+  const r = rows[state.pi];
+  $('#hemi-big').innerHTML = hemiSVG(r,{R:230,numScale:.27,sub:true,maj,foot:30});
+  let leg = '<div class="big">Período '+r.year+'–'+(r.year+4)+'</div>';
+  leg += '<div>Gobernador: <span class="pill" style="background:'+famCol(D.govFam[r.gov])+'">'+r.gov+'</span></div>';
+  leg += '<div>Régimen electoral: '+regOf(r.year).name+'.</div>';
+  leg += '<div>'+r.top.party+' es '+(r.top.seats>=maj?'mayoría absoluta':'primera minoría')+' con '+r.top.seats+' bancas ('+fmt(100*r.top.seats/r.tot,0)+' %). NEP: '+fmt(r.nep,2)+'.</div>';
+  leg += '<ul class="leg">';
+  let lastF=null;
+  r.list.forEach(x=>{
+    if(x.fam!==lastF){leg+='<li class="famh" style="padding:0">'+x.fam+' · '+r.famSeats[x.fam]+'</li>';lastF=x.fam;}
+    leg+='<li data-p="'+esc(x.party)+'"><span class="sw" style="background:'+col(x.party)+'"></span>'+x.party+'<span class="n">'+x.seats+'</span></li>';
+  });
+  leg += '</ul>';
+  $('#hemi-meta').innerHTML = leg;
+  $('#minis').innerHTML = rows.map((q,i)=>'<button class="mini" data-pi="'+i+'" aria-pressed="'+(i===state.pi)+'" aria-label="Período '+q.year+'">'+hemiSVG(q,{R:90,numScale:.3})+'<div class="y">'+q.year+'</div><div class="g">Gob. '+q.gov+'</div></button>').join('');
+}
+
+/* ---------- aluvial ---------- */
+function legendHTML(ch){
+  const order = orderedParties(ch); let last=null, h='<div style="display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:10px;font-size:13px">';
+  order.forEach(p=>{
+    if(fam(p)!==last){ h+='<span style="color:#586272;font-weight:600;margin-right:-8px">'+fam(p)+':</span>'; last=fam(p);}
+    h+='<span style="display:inline-flex;align-items:center;gap:6px"><span class="sw" style="background:'+col(p)+';width:11px;height:11px"></span>'+p+'</span>';
+  });
+  return h+'</div>';
+}
+function renderAlluvial(){
+  const {rows} = stats(state.ch), n = rows.length;
+  const W=1120,H=520,ml=24,mr=24,top=64,bottom=58,cw=38,gap=7;
+  const maxTot = Math.max(...rows.map(s=>s.tot));
+  const unit = (H-top-bottom-gap*3)/maxTot;
+  const xs = rows.map((_,i)=>ml+i*((W-ml-mr-cw)/(n-1)));
+  const cols = rows.map(s=>{
+    let y=top; const blocks={}, nodes=[];
+    D.famOrder.forEach(f=>{
+      const parts=s.list.filter(x=>x.fam===f); if(!parts.length) return;
+      const y0=y; parts.forEach(pt=>{const h=pt.seats*unit; nodes.push({...pt,y,h}); y+=h;});
+      blocks[f]={y0,y1:y,seats:s.famSeats[f]}; y+=gap;
+    });
+    return {nodes,blocks};
+  });
+  let svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolución de bancas por partido y familia" style="width:100%;height:auto;display:block">';
+  {
+    const sp=xs[1]-xs[0]; let i=0;
+    while(i<n){
+      const id=D.regimeByYear[rows[i].year]; let j=i;
+      while(j+1<n && D.regimeByYear[rows[j+1].year]===id) j++;
+      const xa=Math.max(0,xs[i]-(sp-cw)/2), xb=Math.min(W,xs[j]+cw+(sp-cw)/2), r=regOf(rows[i].year);
+      svg+='<rect x="'+xa.toFixed(1)+'" y="52" width="'+(xb-xa).toFixed(1)+'" height="'+(H-52)+'" fill="'+r.tint+'"/>';
+      svg+='<text x="'+((xa+xb)/2).toFixed(1)+'" y="'+(H-16)+'" text-anchor="middle" font-size="12.5" font-weight="600" fill="#586272" pointer-events="none">'+r.short+'</text>';
+      i=j+1;
+    }
+  }
+  for(let i=0;i<n-1;i++){
+    D.famOrder.forEach(f=>{
+      const a=cols[i].blocks[f], b=cols[i+1].blocks[f]; if(!a||!b) return;
+      const xl=xs[i]+cw, xr=xs[i+1], xm=(xl+xr)/2;
+      const d='M'+xl+' '+a.y0+' C'+xm+' '+a.y0+','+xm+' '+b.y0+','+xr+' '+b.y0+' L'+xr+' '+b.y1+' C'+xm+' '+b.y1+','+xm+' '+a.y1+','+xl+' '+a.y1+' Z';
+      svg+='<path class="ribbon" d="'+d+'" fill="'+famCol(f)+'"'+tipAttr(f+': '+a.seats+' → '+b.seats+' bancas ('+rows[i].year+' → '+rows[i+1].year+')')+'/>';
+    });
+  }
+  cols.forEach((c,i)=>{
+    c.nodes.forEach(nd=>{
+      svg+='<rect x="'+xs[i]+'" y="'+nd.y.toFixed(1)+'" width="'+cw+'" height="'+nd.h.toFixed(1)+'" fill="'+col(nd.party)+'" stroke="#fff" stroke-width="1"'+tipAttr(nd.party+' · '+rows[i].year+': '+nd.seats+' bancas ('+fmt(100*nd.seats/rows[i].tot,0)+' %)')+'/>';
+      if(nd.h>=14) svg+='<text x="'+(xs[i]+cw/2)+'" y="'+(nd.y+nd.h/2+4).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" fill="'+txtOn(col(nd.party))+'" pointer-events="none">'+nd.seats+'</text>';
+    });
+    const g=rows[i].gov;
+    svg+='<text x="'+(xs[i]+cw/2)+'" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1b2430">'+rows[i].year+'</text>';
+    svg+='<rect x="'+xs[i]+'" y="30" width="'+cw+'" height="17" rx="8" fill="'+famCol(D.govFam[g])+'"'+tipAttr('Gobernador: '+g)+'/><text x="'+(xs[i]+cw/2)+'" y="42.5" text-anchor="middle" font-size="11" font-weight="600" fill="#fff" pointer-events="none">'+g+'</text>';
+  });
+  svg+='</svg>';
+  $('#alluvial').innerHTML = svg;
+  $('#alluvial-leg').innerHTML = legendHTML(state.ch)+'<div style="font-size:12.5px;color:#586272;margin-top:8px">Las cintas conectan familias, no partidos: un cambio de nombre dentro de una misma familia no corta la cinta. Ficha superior: partido del gobernador, coloreada por su familia.</div>';
+}
+
+/* ---------- gráficos de línea y barras ---------- */
+function frame(w,h){const m={l:40,r:14,t:18,b:30};return {w,h,m,iw:w-m.l-m.r,ih:h-m.t-m.b};}
+function axes(f,labels,yMin,yMax,ticks,fmtY){
+  let s='';
+  ticks.forEach(t=>{const y=f.m.t+f.ih*(1-(t-yMin)/(yMax-yMin));
+    s+='<line x1="'+f.m.l+'" x2="'+(f.w-f.m.r)+'" y1="'+y+'" y2="'+y+'" stroke="#e6eaf0"/><text x="'+(f.m.l-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="12.5" fill="#586272">'+fmtY(t)+'</text>';});
+  labels.forEach((l,i)=>{const x=f.m.l+f.iw*(i+.5)/labels.length;
+    s+='<text x="'+x+'" y="'+(f.h-9)+'" text-anchor="middle" font-size="12.5" fill="#586272">'+l+'</text>';});
+  return s;
+}
+const Y = (f,v,a,b)=>f.m.t+f.ih*(1-(v-a)/(b-a));
+const X = (f,i,n)=>f.m.l+f.iw*(i+.5)/n;
+
+function renderCharts(){
+  const {rows,maj,C} = stats(state.ch), n=rows.length, yrs=rows.map(r=>r.year);
+  /* NEP */
+  {
+    const f=frame(480,290), a=1, b=4.2;
+    let s='<svg viewBox="0 0 '+f.w+' '+f.h+'" role="img" aria-label="NEP por período" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[1,2,3,4],v=>fmt(v,0));
+    const y2=Y(f,2,a,b);
+    s+='<line x1="'+f.m.l+'" x2="'+(f.w-f.m.r)+'" y1="'+y2+'" y2="'+y2+'" stroke="#9aa5b3" stroke-dasharray="4 4"/><text x="'+(f.w-f.m.r)+'" y="'+(y2+16)+'" text-anchor="end" font-size="12" fill="#586272">dos partidos iguales (NEP = 2)</text>';
+    const pts=rows.map((r,i)=>[X(f,i,n),Y(f,r.nep,a,b)]);
+    s+='<polyline fill="none" stroke="#1b2430" stroke-width="2.2" points="'+pts.map(p=>p.join(',')).join(' ')+'"/>';
+    rows.forEach((r,i)=>{s+='<circle cx="'+pts[i][0]+'" cy="'+pts[i][1]+'" r="5" fill="#1b2430" stroke="#fff" stroke-width="1.5"'+tipAttr(r.year+': NEP '+fmt(r.nep,2)+' · '+r.nParties+' fuerzas con bancas')+'/>';
+      s+='<text x="'+pts[i][0]+'" y="'+(pts[i][1]-10)+'" text-anchor="middle" font-size="12" fill="#1b2430">'+fmt(r.nep,2)+'</text>';});
+    if(state.ch==='dip'){
+      const dn=D.votes.map((_,i)=>eStats(i).nepD);
+      const dp=dn.map((v,i)=>[X(f,i,n),Y(f,v,a,b)]);
+      s+='<polyline fill="none" stroke="#c27a00" stroke-width="2" stroke-dasharray="5 4" points="'+dp.map(p=>p.join(',')).join(' ')+'"/>';
+      dn.forEach((v,i)=>{s+='<circle cx="'+dp[i][0]+'" cy="'+dp[i][1]+'" r="5" fill="#fff" stroke="#c27a00" stroke-width="2"'+tipAttr(yrs[i]+': NEP '+fmt(v,2)+' con D’Hondt (piso: '+pisoObj().label+')')+'/>';});
+      const li=n-1;
+      s+='<text x="'+(dp[li][0]-9)+'" y="'+(dp[li][1]-9)+'" text-anchor="end" font-size="12.5" fill="#c27a00" font-weight="600">'+fmt(dn[li],2)+' con D’Hondt</text>';
+    }
+    $('#c-nep').innerHTML=s+'</svg>';
+    $('#p-nep').textContent = state.ch==='dip' ? 'Línea punteada: NEP si las 50 bancas se repartieran por D’Hondt (piso elegido en la sección D’Hondt).' : 'Más alto = sistema menos concentrado.';
+  }
+  /* bloque del gobernador */
+  {
+    const f=frame(480,290), a=0, b=C.total, step=state.ch==='dip'?10:5;
+    const ticks=[]; for(let t=0;t<=b;t+=step) ticks.push(t);
+    let s='<svg viewBox="0 0 '+f.w+' '+f.h+'" role="img" aria-label="Bancas del bloque del gobernador" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,ticks,v=>v);
+    const bw=f.iw/n*.58;
+    rows.forEach((r,i)=>{
+      const x=X(f,i,n), y=Y(f,r.govSeats,a,b), y0=Y(f,0,a,b);
+      s+='<rect x="'+(x-bw/2)+'" y="'+y+'" width="'+bw+'" height="'+(y0-y)+'" fill="'+famCol(D.govFam[r.gov])+'" rx="2"'+tipAttr(r.year+': bloque del gobernador ('+r.gov+') = '+r.govSeats+' bancas. '+r.gob)+'/>';
+      s+='<text x="'+x+'" y="'+(y-5)+'" text-anchor="middle" font-size="12" fill="#1b2430">'+r.govSeats+'</text>';
+    });
+    const ym=Y(f,maj,a,b);
+    s+='<line x1="'+f.m.l+'" x2="'+(f.w-f.m.r)+'" y1="'+ym+'" y2="'+ym+'" stroke="#1b2430" stroke-dasharray="5 4"/>';
+    $('#c-gov').innerHTML=s+'</svg>'; $('#p-gov').textContent='La línea punteada marca la mayoría absoluta de la cámara ('+maj+' bancas). Color: familia del gobernador.';
+  }
+  /* volatilidad */
+  {
+    const vr=rows.slice(1), m2=vr.length, ymax=Math.ceil(Math.max(...vr.map(r=>r.volParty))/10)*10;
+    const f=frame(480,290);
+    let s='<svg viewBox="0 0 '+f.w+' '+f.h+'" role="img" aria-label="Volatilidad de bancas" style="width:100%;height:auto;display:block">'+bandsSVG(f,vr.map(r=>r.year))+axes(f,vr.map(r=>r.year),0,ymax,[0,ymax/4,ymax/2,3*ymax/4,ymax].map(Math.round),v=>v);
+    const bw=f.iw/m2*.32;
+    vr.forEach((r,i)=>{
+      const x=X(f,i,m2), y0=Y(f,0,0,ymax);
+      const yp=Y(f,r.volParty,0,ymax), yf=Y(f,r.volFam,0,ymax);
+      s+='<rect x="'+(x-bw-1)+'" y="'+yp+'" width="'+bw+'" height="'+(y0-yp)+'" fill="#c9d3df" rx="2"'+tipAttr(r.year+' · por partido: '+fmt(r.volParty,1))+'/>';
+      s+='<rect x="'+(x+1)+'" y="'+yf+'" width="'+bw+'" height="'+(y0-yf)+'" fill="#1b2430" rx="2"'+tipAttr(r.year+' · por familia: '+fmt(r.volFam,1))+'/>';
+    });
+    s+='<rect x="'+(f.m.l+6)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#1b2430"/><text x="'+(f.m.l+20)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">por familia</text><rect x="'+(f.m.l+96)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#c9d3df"/><text x="'+(f.m.l+110)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">por partido</text>';
+    $('#c-vol').innerHTML=s+'</svg>';
+    $('#p-vol').textContent='Índice de Pedersen sobre bancas. Por partido sobrestima el cambio cuando una alianza cambia de nombre.';
+  }
+}
+
+/* ---------- tabla ---------- */
+function renderTable(){
+  const {rows} = stats(state.ch);
+  let h='<thead><tr><th>Período</th><th>Régimen electoral</th><th>Gobernador</th><th>Presidente al inicio</th><th>Primera fuerza</th><th>Bancas (%)</th><th>Condición</th><th>NEP</th><th>Bloque del gobernador</th><th>Relación con el gobernador</th><th>Bancas de la familia del oficialismo nacional</th><th>Volatilidad (familias)</th></tr></thead><tbody>';
+  rows.forEach(r=>{
+    h+='<tr><td><b>'+r.year+'</b></td><td>'+regOf(r.year).short+'</td>'
+     +'<td><span class="pill" style="background:'+famCol(D.govFam[r.gov])+'">'+r.gov+'</span></td>'
+     +'<td>'+r.pres.name+' <span class="pill" style="background:'+famCol(r.pres.family)+'">'+r.pres.fshort+'</span>'+(r.pres.note?'<div style="font-size:12px;color:#586272">'+r.pres.note+'</div>':'')+'</td>'
+     +'<td>'+r.top.party+'</td>'
+     +'<td class="num">'+r.top.seats+' ('+fmt(100*r.top.seats/r.tot,0)+' %)</td>'
+     +'<td>'+r.topCond+'</td>'
+     +'<td class="num">'+fmt(r.nep,2)+'</td>'
+     +'<td class="num">'+r.govSeats+' ('+fmt(100*r.govSeats/r.tot,0)+' %)</td>'
+     +'<td>'+r.gob+'</td>'
+     +'<td class="num">'+r.presSeats+' ('+fmt(100*r.presSeats/r.tot,0)+' %)</td>'
+     +'<td class="num">'+(r.volFam===null?'—':fmt(r.volFam,1))+'</td></tr>';
+  });
+  $('#tbl').innerHTML=h+'</tbody>';
+}
+
+/* ---------- textos ---------- */
+function renderText(){}
+
+function renderAll(){
+  $('#b-dip').setAttribute('aria-pressed',state.ch==='dip');
+  $('#b-sen').setAttribute('aria-pressed',state.ch==='sen');
+  renderText(); renderTimeline(); renderHemi(); renderAlluvial(); renderRegLegend(); renderCharts(); renderRegTable(); renderTable(); renderVotes(); renderDhondt();
+}
+
+
+/* ---------- votos y D'Hondt (solo Diputados) ---------- */
+const famIdx = k => { const i=D.famOrder.indexOf(D.family[k]||'Sin clasificar'); return i<0?99:i; };
+const ordKey = k => famIdx(k)*100+(D.voteOrder.indexOf(k)+1);
+const pisoObj = () => D.pisos.find(p=>p.id===state.piso)||D.pisos[1];
+const lcol = k => D.colors[k] || '#b9c0c9';
+const pct = (x,d=1) => fmt(x,d)+' %';
+const nf = x => x.toLocaleString('es-AR');
+function dhondt(items,n){
+  const s={}; items.forEach(x=>s[x.k]=0);
+  for(let i=0;i<n;i++){
+    let best=null,bq=-1,bv=-1;
+    items.forEach(x=>{const q=x.v/(s[x.k]+1); if(q>bq||(q===bq&&x.v>bv)){best=x.k;bq=q;bv=x.v;}});
+    s[best]++;
+  }
+  return s;
+}
+const ES = {};
+function eStats(i){
+  const ck=state.piso+'|'+i; if(ES[ck]) return ES[ck];
+  const e=D.votes[i], per=D.chambers.dip.periods.find(p=>p.year===e.year), real=per.seats;
+  const emit=e.pos+e.nulos+e.blanco, thr=pisoObj().pct*e.padron;
+  const lists=e.lists.slice().sort((a,b)=>b.votes-a.votes);
+  const dh=dhondt(lists.filter(l=>l.votes>=thr).map(l=>({k:l.key,v:l.votes})),50);
+  Object.keys(dh).forEach(k=>{if(!dh[k]) delete dh[k];});
+  const sh=l=>l.votes/e.pos;
+  const nepOf=m=>1/Object.values(m).reduce((a,v)=>a+Math.pow(v/50,2),0);
+  const nepV=1/lists.reduce((a,l)=>a+Math.pow(sh(l),2),0);
+  const vmap={}; lists.forEach(l=>vmap[l.key]=100*sh(l));
+  const listed=lists.reduce((a,l)=>a+l.votes,0), otros=100*(1-listed/e.pos);
+  const keys=new Set([...Object.keys(vmap),...Object.keys(real),...Object.keys(dh)]);
+  const gal=m=>{let s=otros*otros; keys.forEach(k=>{const d=(vmap[k]||0)-100*(m[k]||0)/50; s+=d*d;}); return Math.sqrt(s/2);};
+  const top=lists[0], second=lists[1];
+  const kk=new Set([...Object.keys(real),...Object.keys(dh)]);
+  let moved=0; kk.forEach(k=>moved+=Math.abs((dh[k]||0)-(real[k]||0))); moved/=2;
+  const bloc=D.govBloc[per.gov]||[], sumB=m=>bloc.reduce((a,k)=>a+(m[k]||0),0);
+  return ES[ck]={year:e.year,e,per,real,dh,lists,top,second,emit,partic:100*emit/e.padron,
+    blancoPct:100*e.blanco/emit,nulosPct:100*e.nulos/emit,topShare:100*sh(top),secShare:100*sh(second),
+    margin:100*(top.votes-second.votes)/e.pos,topReal:real[top.key]||0,topDh:dh[top.key]||0,
+    nepV,nepR:nepOf(real),nepD:nepOf(dh),galR:gal(real),galD:gal(dh),moved,
+    govReal:sumB(real),govDh:sumB(dh),thr,rest:e.pos-listed,gov:per.gov};
+}
+function rowFrom(map,year){
+  const keys=Object.keys(map).sort((a,b)=>ordKey(a)-ordKey(b));
+  return {year,tot:50,list:keys.map(k=>({party:k,seats:map[k],fam:D.family[k]||'Sin clasificar'})),seats:map};
+}
+
+function renderVotes(){
+  const n=D.votes.length, yrs=D.votes.map(v=>v.year), st=D.votes.map((_,i)=>eStats(i));
+  /* barras apiladas de votos */
+  {
+    const f={w:1120,h:400,m:{l:52,r:16,t:20,b:34}}; f.iw=f.w-f.m.l-f.m.r; f.ih=f.h-f.m.t-f.m.b;
+    let s='<svg viewBox="0 0 1120 400" role="img" aria-label="Votos por lista en cada elección" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,0,100,[0,25,50,75,100],v=>v+' %');
+    const bw=f.iw/n*.6;
+    st.forEach((r,i)=>{
+      const x=X(f,i,n), pos=r.e.pos;
+      const colored=r.lists.filter(l=>D.colors[l.key]).sort((p,q)=>D.voteOrder.indexOf(p.key)-D.voteOrder.indexOf(q.key));
+      const cv=colored.reduce((a,l)=>a+l.votes,0);
+      const segs=colored.map(l=>({name:l.key,v:l.votes,c:lcol(l.key)}));
+      segs.push({name:'Otras listas',v:pos-cv,c:'#c7ced6'});
+      let acc=0;
+      segs.forEach(g=>{
+        const p0=100*acc/pos, p1=100*(acc+g.v)/pos; acc+=g.v;
+        const yT=Y(f,p1,0,100), yB=Y(f,p0,0,100), h=yB-yT; if(h<=0) return;
+        s+='<rect x="'+(x-bw/2).toFixed(1)+'" y="'+yT.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+g.c+'" stroke="#fff" stroke-width="1"'+tipAttr(r.year+' · '+g.name+': '+nf(g.v)+' votos ('+pct(100*g.v/pos)+' de los positivos)')+'/>';
+        if(p1-p0>=7) s+='<text x="'+x+'" y="'+(yT+h/2+4).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" fill="'+txtOn(g.c)+'" pointer-events="none">'+Math.round(p1-p0)+'</text>';
+      });
+    });
+    $('#v-stack').innerHTML=s+'</svg>';
+    const present=D.voteOrder.filter(k=>D.colors[k]);
+    $('#v-stack-leg').innerHTML='<div style="display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px">'+present.map(k=>'<span style="display:inline-flex;align-items:center;gap:6px"><span class="sw" style="background:'+lcol(k)+';width:11px;height:11px"></span>'+k+'</span>').join('')+'<span style="display:inline-flex;align-items:center;gap:6px"><span class="sw" style="background:#c7ced6;width:11px;height:11px"></span>Otras listas (incluye votos sin detallar)</span></div><div style="font-size:12.5px;color:#586272;margin-top:8px">Porcentaje sobre votos positivos. Los números dentro de cada segmento son el porcentaje de votos de la lista.</div>';
+  }
+  /* participación */
+  {
+    const f=frame(480,290), a=60, b=100;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="Participación" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[60,70,80,90,100],v=>v);
+    const pts=st.map((r,i)=>[X(f,i,n),Y(f,r.partic,a,b)]);
+    s+='<polyline fill="none" stroke="#1b2430" stroke-width="2.2" points="'+pts.map(p=>p.join(',')).join(' ')+'"/>';
+    st.forEach((r,i)=>{s+='<circle cx="'+pts[i][0]+'" cy="'+pts[i][1]+'" r="4.5" fill="#1b2430" stroke="#fff" stroke-width="1.5"'+tipAttr(r.year+': '+pct(r.partic)+' del padrón ('+nf(r.emit)+' de '+nf(r.e.padron)+')')+'/><text x="'+pts[i][0]+'" y="'+(pts[i][1]-9)+'" text-anchor="middle" font-size="11" fill="#1b2430">'+fmt(r.partic,0)+'</text>';});
+    $('#v-part').innerHTML=s+'</svg>';
+  }
+  /* blancos y nulos */
+  {
+    const f=frame(480,290), a=0, b=30, bw=f.iw/n*.58;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="Blancos y nulos" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[0,10,20,30],v=>v);
+    st.forEach((r,i)=>{
+      const x=X(f,i,n), y0=Y(f,0,a,b), yb=Y(f,r.blancoPct,a,b), yn=Y(f,r.blancoPct+r.nulosPct,a,b);
+      s+='<rect x="'+(x-bw/2)+'" y="'+yb+'" width="'+bw+'" height="'+(y0-yb)+'" fill="#8a95a5"'+tipAttr(r.year+': blancos '+pct(r.blancoPct)+' ('+nf(r.e.blanco)+')')+'/>';
+      s+='<rect x="'+(x-bw/2)+'" y="'+yn+'" width="'+bw+'" height="'+(yb-yn)+'" fill="#1b2430"'+tipAttr(r.year+': nulos '+pct(r.nulosPct)+' ('+nf(r.e.nulos)+')')+'/>';
+      if(r.nulosPct>=3) s+='<text x="'+x+'" y="'+(yn-4)+'" text-anchor="middle" font-size="11" font-weight="600" fill="#1b2430">'+fmt(r.nulosPct,1)+'</text>';
+    });
+    s+='<rect x="'+(f.m.l+6)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#8a95a5"/><text x="'+(f.m.l+20)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">blancos</text><rect x="'+(f.m.l+82)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#1b2430"/><text x="'+(f.m.l+96)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">nulos</text>';
+    $('#v-bn').innerHTML=s+'</svg>';
+  }
+  /* voto de la primera fuerza */
+  {
+    const f=frame(480,290), a=0, b=70, bw=f.iw/n*.58;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="Voto de la primera fuerza" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[0,20,40,60],v=>v);
+    st.forEach((r,i)=>{
+      const x=X(f,i,n), y=Y(f,r.topShare,a,b), y0=Y(f,0,a,b);
+      s+='<rect x="'+(x-bw/2)+'" y="'+y+'" width="'+bw+'" height="'+(y0-y)+'" fill="'+lcol(r.top.key)+'"'+tipAttr(r.year+': '+r.top.key+' '+pct(r.topShare)+' de los positivos. Segunda: '+r.second.key+' '+pct(r.secShare)+'. Margen '+fmt(r.margin,1)+' puntos.')+'/>';
+      s+='<text x="'+x+'" y="'+(y-4)+'" text-anchor="middle" font-size="11" fill="#1b2430">'+fmt(r.topShare,0)+'</text>';
+    });
+    const y56=Y(f,56,a,b);
+    s+='<line x1="'+f.m.l+'" x2="'+(f.w-f.m.r)+'" y1="'+y56+'" y2="'+y56+'" stroke="#1b2430" stroke-dasharray="5 4"/><text x="'+(f.w-f.m.r-4)+'" y="'+(y56-5)+'" text-anchor="end" font-size="12" fill="#1b2430">28 de 50 bancas = 56 %</text>';
+    $('#v-win').innerHTML=s+'</svg>';
+  }
+  /* tabla de resultados */
+  let h='<thead><tr><th>Elección</th><th>Padrón</th><th>Votos emitidos</th><th>Participación</th><th>Positivos</th><th>Blancos</th><th>Nulos</th><th>Primera fuerza</th><th>Segunda fuerza</th><th>Margen (puntos)</th></tr></thead><tbody>';
+  st.forEach(r=>{
+    h+='<tr><td><b>'+r.year+'</b></td><td class="num">'+nf(r.e.padron)+'</td><td class="num">'+nf(r.emit)+'</td><td class="num">'+pct(r.partic)+'</td><td class="num">'+nf(r.e.pos)+'</td>'
+     +'<td class="num">'+pct(r.blancoPct)+'</td><td class="num">'+pct(r.nulosPct)+'</td>'
+     +'<td>'+r.top.key+' · '+pct(r.topShare)+'</td><td>'+r.second.key+' · '+pct(r.secShare)+'</td><td class="num">'+fmt(r.margin,1)+'</td></tr>';
+  });
+  $('#tbl-votes').innerHTML=h+'</tbody>';
+}
+
+function renderDhondt(){
+  const n=D.votes.length, yrs=D.votes.map(v=>v.year), st=D.votes.map((_,i)=>eStats(i));
+  if(state.vi===null||state.vi>=n) state.vi=n-1;
+  $('#findings-votes').innerHTML=D.findingsVotes.map(x=>'<li>'+x+'</li>').join('');
+  $('#piso-seg').innerHTML=D.pisos.map(p=>'<button data-piso="'+p.id+'" aria-pressed="'+(p.id===state.piso)+'">'+p.label+'</button>').join('');
+  /* bancas de la primera fuerza */
+  {
+    const f=frame(480,290), a=0, b=32, bw=f.iw/n*.34;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="Bancas de la primera fuerza, reales y por D’Hondt" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[0,10,20,30],v=>v);
+    st.forEach((r,i)=>{
+      const x=X(f,i,n), y0=Y(f,0,a,b), yr=Y(f,r.topReal,a,b), yd=Y(f,r.topDh,a,b);
+      s+='<rect x="'+(x-bw-1)+'" y="'+yr+'" width="'+bw+'" height="'+(y0-yr)+'" fill="#1b2430"'+tipAttr(r.year+': '+r.top.key+' tuvo '+r.topReal+' bancas reales')+'/>';
+      s+='<rect x="'+(x+1)+'" y="'+yd+'" width="'+bw+'" height="'+(y0-yd)+'" fill="#c27a00"'+tipAttr(r.year+': '+r.top.key+' tendría '+r.topDh+' bancas por D’Hondt')+'/>';
+      s+='<text x="'+(x+1+bw/2)+'" y="'+(yd-4)+'" text-anchor="middle" font-size="11" fill="#8a5a00" font-weight="600">'+r.topDh+'</text>';
+    });
+    const ym=Y(f,26,a,b);
+    s+='<line x1="'+f.m.l+'" x2="'+(f.w-f.m.r)+'" y1="'+ym+'" y2="'+ym+'" stroke="#1b2430" stroke-dasharray="5 4"/>';
+    s+='<rect x="'+(f.m.l+6)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#1b2430"/><text x="'+(f.m.l+20)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">reales (siempre 28)</text><rect x="'+(f.m.l+150)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#c27a00"/><text x="'+(f.m.l+164)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">D’Hondt</text>';
+    $('#d-top').innerHTML=s+'</svg>';
+  }
+  /* NEP */
+  {
+    const f=frame(480,290), a=1, b=4.6;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="NEP con votos, bancas reales y D’Hondt" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[1,2,3,4],v=>fmt(v,0));
+    const series=[['nepV','#7d8794','2 3','votos'],['nepR','#1b2430','','bancas reales'],['nepD','#c27a00','5 4','D’Hondt']];
+    series.forEach(([k,c,dash,lab])=>{
+      const pts=st.map((r,i)=>[X(f,i,n),Y(f,r[k],a,b)]);
+      s+='<polyline fill="none" stroke="'+c+'" stroke-width="2.2"'+(dash?' stroke-dasharray="'+dash+'"':'')+' points="'+pts.map(p=>p.join(',')).join(' ')+'"/>';
+      st.forEach((r,i)=>{s+='<circle cx="'+pts[i][0]+'" cy="'+pts[i][1]+'" r="4" fill="'+c+'" stroke="#fff" stroke-width="1.2"'+tipAttr(r.year+': NEP '+lab+' = '+fmt(r[k],2))+'/>';});
+    });
+    s+='<text x="'+(f.m.l+6)+'" y="'+(f.m.t+10)+'" font-size="12" fill="#7d8794">votos</text><text x="'+(f.m.l+52)+'" y="'+(f.m.t+10)+'" font-size="12" fill="#1b2430">bancas reales</text><text x="'+(f.m.l+148)+'" y="'+(f.m.t+10)+'" font-size="12" fill="#8a5a00">D’Hondt</text>';
+    $('#d-nep').innerHTML=s+'</svg>';
+  }
+  /* Gallagher */
+  {
+    const f=frame(480,290), a=0, b=20, bw=f.iw/n*.34;
+    let s='<svg viewBox="0 0 480 290" role="img" aria-label="Índice de Gallagher real y con D’Hondt" style="width:100%;height:auto;display:block">'+bandsSVG(f,yrs)+axes(f,yrs,a,b,[0,5,10,15,20],v=>v);
+    st.forEach((r,i)=>{
+      const x=X(f,i,n), y0=Y(f,0,a,b), yr=Y(f,r.galR,a,b), yd=Y(f,r.galD,a,b);
+      s+='<rect x="'+(x-bw-1)+'" y="'+yr+'" width="'+bw+'" height="'+(y0-yr)+'" fill="#1b2430"'+tipAttr(r.year+': Gallagher real '+fmt(r.galR,1))+'/>';
+      s+='<rect x="'+(x+1)+'" y="'+yd+'" width="'+bw+'" height="'+(y0-yd)+'" fill="#c27a00"'+tipAttr(r.year+': Gallagher con D’Hondt '+fmt(r.galD,1))+'/>';
+      s+='<text x="'+(x-bw/2-1)+'" y="'+(yr-4)+'" text-anchor="middle" font-size="10.5" fill="#1b2430">'+fmt(r.galR,0)+'</text>';
+    });
+    s+='<rect x="'+(f.m.l+6)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#1b2430"/><text x="'+(f.m.l+20)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">real</text><rect x="'+(f.m.l+62)+'" y="'+(f.m.t+2)+'" width="10" height="10" fill="#c27a00"/><text x="'+(f.m.l+76)+'" y="'+(f.m.t+11)+'" font-size="12" fill="#1b2430">D’Hondt</text>';
+    $('#d-gal').innerHTML=s+'</svg>';
+  }
+  /* tabla resumen */
+  let h='<thead><tr><th>Elección</th><th>Primera fuerza</th><th>Votos</th><th>Bancas reales</th><th>Bancas D’Hondt</th><th>Cambian de manos</th><th>Mayoría absoluta (real → D’Hondt)</th><th>Bloque del gobernador (real → D’Hondt)</th><th>Gallagher (real → D’Hondt)</th></tr></thead><tbody>';
+  st.forEach(r=>{
+    const dd=r.topDh-r.topReal;
+    h+='<tr><td><b>'+r.year+'</b></td><td>'+r.top.key+'</td><td class="num">'+pct(r.topShare)+'</td><td class="num">'+r.topReal+'</td>'
+     +'<td class="num">'+r.topDh+' <span class="'+(dd<0?'dneg':'')+'">('+dd+')</span></td><td class="num">'+r.moved+'</td>'
+     +'<td>'+(r.topReal>=26?'Sí':'No')+' → '+(r.topDh>=26?'Sí':'No')+'</td>'
+     +'<td class="num">'+r.govReal+' → '+r.govDh+'</td><td class="num">'+fmt(r.galR,1)+' → '+fmt(r.galD,1)+'</td></tr>';
+  });
+  $('#tbl-dh').innerHTML=h+'</tbody>';
+  /* detalle */
+  $('#v-elecs').innerHTML=D.votes.map((v,i)=>'<button data-vi="'+i+'" aria-pressed="'+(i===state.vi)+'">'+v.year+'</button>').join('');
+  const r=st[state.vi];
+  $('#dh-hemi-real').innerHTML=hemiSVG(rowFrom(r.real,r.year),{R:190,numScale:.27});
+  $('#dh-hemi-dh').innerHTML=hemiSVG(rowFrom(r.dh,r.year),{R:190,numScale:.27});
+  $('#dh-cap-real').textContent=r.top.key+' recibe '+r.topReal+' bancas con '+pct(r.topShare)+' de los votos positivos.';
+  $('#dh-cap-dh').textContent=r.top.key+' tendría '+r.topDh+' bancas. Piso: '+pisoObj().label+'.';
+  let d='<thead><tr><th>Lista</th><th>Votos</th><th>% positivos</th><th>% padrón</th><th>Supera el piso</th><th>Bancas reales</th><th>Bancas D’Hondt</th><th>Diferencia</th></tr></thead><tbody>';
+  r.lists.forEach(l=>{
+    const re=r.real[l.key]||0, dh=r.dh[l.key]||0, df=dh-re, ok=l.votes>=r.thr;
+    d+='<tr><td><span class="sw" style="display:inline-block;background:'+lcol(l.key)+';width:11px;height:11px;margin-right:6px"></span>'+l.key+'</td><td class="num">'+nf(l.votes)+'</td><td class="num">'+pct(100*l.votes/r.e.pos,2)+'</td><td class="num">'+pct(100*l.votes/r.e.padron,2)+'</td><td>'+(ok?'Sí':'No')+'</td><td class="num">'+re+'</td><td class="num">'+dh+'</td><td class="num '+(df>0?'dpos':df<0?'dneg':'')+'">'+(df>0?'+':'')+df+'</td></tr>';
+  });
+  if(r.rest>0) d+='<tr><td>Otras listas (sin detallar)</td><td class="num">'+nf(r.rest)+'</td><td class="num">'+pct(100*r.rest/r.e.pos,2)+'</td><td class="num">'+pct(100*r.rest/r.e.padron,2)+'</td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>';
+  d+='<tr><td><b>Total</b></td><td class="num"><b>'+nf(r.e.pos)+'</b></td><td class="num"><b>100 %</b></td><td class="num"></td><td></td><td class="num"><b>50</b></td><td class="num"><b>50</b></td><td></td></tr>';
+  $('#tbl-detail').innerHTML=d+'</tbody>';
+}
+
+/* ---------- eventos ---------- */
+$('#b-dip').onclick=()=>{state.ch='dip';state.pi=null;renderAll();};
+$('#b-sen').onclick=()=>{state.ch='sen';state.pi=null;renderAll();};
+document.addEventListener('click',e=>{
+  const v=e.target.closest('[data-vi]'); if(v){state.vi=+v.dataset.vi; renderDhondt(); return;}
+  const p=e.target.closest('[data-piso]'); if(p){state.piso=p.dataset.piso; renderDhondt(); renderCharts(); return;}
+  const b=e.target.closest('[data-pi]'); if(!b) return;
+  state.pi=+b.dataset.pi; renderHemi();
+});
+const tip=$('#tip');
+function moveTip(e){
+  const t=e.target.closest&&e.target.closest('[data-tip]');
+  if(!t){tip.style.opacity=0;return;}
+  tip.textContent=t.getAttribute('data-tip'); tip.style.opacity=1;
+  const pad=14, w=tip.offsetWidth, h=tip.offsetHeight;
+  let x=e.clientX+pad, y=e.clientY+pad;
+  if(x+w>innerWidth-8) x=e.clientX-w-pad;
+  if(y+h>innerHeight-8) y=e.clientY-h-pad;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+document.addEventListener('pointermove',moveTip);
+document.addEventListener('pointerdown',moveTip);
+document.addEventListener('pointerleave',()=>tip.style.opacity=0);
+document.addEventListener('mouseover',e=>{
+  const li=e.target.closest('.leg [data-p]'); const svg=$('#hemi-big svg'); if(!svg) return;
+  if(li){svg.classList.add('hl'); svg.querySelectorAll('.seat').forEach(s=>s.classList.toggle('on',s.dataset.p===li.dataset.p));}
+  else if(!e.target.closest('.leg')){svg.classList.remove('hl'); svg.querySelectorAll('.seat.on').forEach(s=>s.classList.remove('on'));}
+});
+
+renderAll();
+</script>
+</body>
+</html>
